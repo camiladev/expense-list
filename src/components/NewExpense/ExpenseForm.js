@@ -40,7 +40,7 @@ function ExpenseForm(props) {
 
     const expenseData = {
       title: userInput.enteredTitle,
-      amount: userInput.enteredAmount,
+      amount: +userInput.enteredAmount, //o sinal + converte o valor de string para numero
       date: new Date(userInput.enteredDate),
     };
 
@@ -51,6 +51,10 @@ function ExpenseForm(props) {
       enteredDate: "",
     });
   };
+
+  const cancelHandle = () => {
+    props.onFormVisible()
+  }
 
   return (
     <form onSubmit={submitHandler}>
@@ -85,6 +89,7 @@ function ExpenseForm(props) {
         </div>
       </div>
       <div className="new-expense__actions">
+        <button type="button" onClick={cancelHandle}>Cancel</button>
         <button type="submit">Add Expense</button>
       </div>
     </form>
